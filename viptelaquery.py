@@ -91,35 +91,17 @@ def get_tunnel_statistic(serveraddress,session,systemip,inventory):
         links_det['target']=targets
         links_det['source']=systemip
     else:
-        #print('     {0:10}               {1:15} {2:10} {3:10}  {4:10}   {5:10}'.format("Tunnel",
-        #                                                                   "Color",
-        #                                                                   "RX Pkts",
-        #                                                                   "TX Pkts", "RX Bytes",
-        #                                                                   "TX Bytes"))
-
-        #print('     {0:10}               {1:15} {2:10} {3:10}  {4:10}   {5:10}'.format("------",
-        #                                                                   "-----",
-        #                                                                  "-------",
-        #                                                                   "-------", "--------",
-        #                                                                   "--------"))
-
-        # Reset the rx and tx total statistics
-        #rx=0
-        #tx=0
-
         # Process through each Tunnel on the device
         
         targets=[]
         #colors=[]
         for stats in json_string['data']:
-            #rx=rx+int(stats['rx_octets'])
-            #tx=tx+int(stats['tx_octets'])
+            
             #print(stats)
             links_det['source']=stats['vdevice-host-name']
             targets.append(stats['system-ip']+' '+stats['local-color'])
             #colors.append(stats['local-color'])
-            #links_det['target']=stats['system-ip']#,stats['local-color']
-            #print(inventory[stats['system-ip']])
+            
         
         links_det['target']=targets
         #links_det['colors']=colors
