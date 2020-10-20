@@ -1,1 +1,16 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My first NeXt topology!</title>
+	<link rel="stylesheet" href="static/css/next.css">
+	<script type="text/javascript" src="static/js/next.js"></script>
+</head>
+<body>
+	<div id="topology-container"></div>
+    <script type="text/javascript">
+        var topologyData = JSON.parse('{{ topdat | tojson | safe}}');
+    </script>
+	<script type="text/javascript" src="static/app.js"></script>
+</body>
+</html>
