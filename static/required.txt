@@ -1,0 +1,1 @@
+NextUI's css, doc, fonts, js folders should be in this 'static' folder
