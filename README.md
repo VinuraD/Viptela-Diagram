@@ -56,4 +56,4 @@ https://github.com/CiscoSE/viptelaquery, Thanks, I used this as the code to make
 ## LICENCE
 
 Please view the LICENCE file
-[LICENCE]()
+[LICENCE](https://github.com/VinuraD/Viptela-Diagram/blob/main/LICENSE)
