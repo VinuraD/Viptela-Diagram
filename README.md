@@ -9,42 +9,42 @@ As described, this can be used to view the IPsec tunnels created between the bra
 
 ## Installation
 
-1. Clone the repository. ( Or download the .zip file directly).
+* Clone the repository. ( Or download the .zip file directly).
 ```
 git clone https://github.com/VinuraD/Viptela-Diagram 
 ```
 
-1. Go to the directory
+* Go to the directory
 ```
 cd .../Viptela-Diagram
 ```
 
-1. This requires Python 3.7+ mainly. Install Python added to path. It is preferred to have a virtualenv created for this project separately. After that following libraries are required.
-* Flask, Configparser (optional)
+* This requires Python 3.7+ mainly. Install Python added to path. It is preferred to have a virtualenv created for this project separately. After that following libraries are required.
+-Flask, Configparser (optional)
 
-1. To create virtualenv,
+* To create virtualenv,
 
 ```python 
 python3 -m venv venv
 ```
->(Linux) or 
+>(For Linux) or 
 
 ```python 
 virtualenv venv
 ``` 
->(Windows)
+>(For Windows)
 
-1. You can use `pip install <library_name>` to install them one by one. Or use requirements.txt as below (after activating the virtualenv)
+* You can use `pip install <library_name>` to install them one by one. Or use requirements.txt as below (after activating the virtualenv)
 
 ```python
 pip install -r requirements.txt
 ```
 
-1. Download NextUI js and css files from Cisco devnet (https://d1nmyq4gcgsfi5.cloudfront.net/site/neXt/). NextUI is used to build the UI here. 
+* Download NextUI js and css files from Cisco devnet (https://d1nmyq4gcgsfi5.cloudfront.net/site/neXt/). NextUI is used to build the UI here. 
 
-1. Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout) You have to put app.js and data.js files in the 'static' folder and viptelaquery.py and app.py in the same directory. Here, data.js contains only an example dataset and the same dataset is present in the getconn.py as well. One can edit it to statically include a diagram. Here in the repo, they are in order. But after downloading NextUI files, you will have to put them manually in the 'static' folder.
+* Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout) You have to put app.js and data.js files in the 'static' folder and viptelaquery.py and app.py in the same directory. Here, data.js contains only an example dataset and the same dataset is present in the getconn.py as well. One can edit it to statically include a diagram. Here in the repo, they are in order. But after downloading NextUI files, you will have to put them manually in the 'static' folder.
 
-1. Change ip address of the server (vmanage), username and password in the getconn.py file.(In the places of IP, username, pwd). *I know that this is not good practise. Need to implement a proper method to store credentials in the future. This is only the first development stage/testing. 
+* Change ip address of the server (vmanage), username and password in the getconn.py file.(In the places of IP, username, pwd). *I know that this is not good practise. Need to implement a proper method to store credentials in the future. This is only the first development stage/testing. 
 
 ``` python
 session=viptelaquery.initalize_connection('ip','user','pwd')
@@ -56,7 +56,7 @@ link_det=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
 
 ## Configuration
 
-1. The only configuration needs to be done currently is changing ip, username, password as mentioned in the installation step.
+* The only configuration needs to be done currently is changing ip, username, password as mentioned in the installation step.
 *Note: I have put the timeout for a API request as 300s (a big value). This might be required of you are using a VPN connection. Otherwise yuo may bring it down to something like 10s. (default value), as below (in viptelaquery.py)
 
 ```python
@@ -65,13 +65,13 @@ response = session.request("GET", url,verify=False,timeout=300)
 
 ## Usage
 
-1. To run, get a terminal/CMD and go to the directory where the project folder lies
+* To run, get a terminal/CMD and go to the directory where the project folder lies
 
  ```
  cd .../Viptela-Diagram/
  ```
 
-1. With virtualenv activated (if one is used only)
+* Activate virtualenv (if one is used only)
 
 ```python
 source venv/bin/activate
@@ -82,13 +82,13 @@ venv\bin\activate
 ``` 
 >(Windows)
 
-1. Then run the script,
+* Then run the script,
 
 ```python
 Python getconn.py
 ```
-1. You would see the Flask server intiated.
-1. This has only one web page to display the diagram, view it from a browser,
+* You would see the Flask server intiated.
+* This has only one web page to display the diagram, view it from a browser,
 
 ```
 http://localhost:5000
