@@ -45,6 +45,8 @@ Apart from the lack of credential storing method, if the API calls get delayed t
 ## Getting Involved
 
 You are welome to make improvements to the app via forks or give suggestions and even track/pointout issues.
+[CONTRIBUTING](https://github.com/VinuraD/Viptela-Diagram/blob/main/CONTRIBUTING.md)
+
 vinurad@millenniumitesp.com 
 
 ## Credits and references
@@ -54,3 +56,4 @@ https://github.com/CiscoSE/viptelaquery, Thanks, I used this as the code to make
 ## LICENCE
 
 Please view the LICENCE file
+[LICENCE]()
