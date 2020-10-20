@@ -10,21 +10,35 @@ As described, this can be used to view the IPsec tunnels created between the bra
 ## Installation
 
 1. Clone the repository. ( Or download the .zip file directly).
->``` git clone https://github.com/VinuraD/Viptela-Diagram ```
+```
+git clone https://github.com/VinuraD/Viptela-Diagram 
+```
 
 1. Go to the directory
->```cd .../Viptela-Diagram```
+```
+cd .../Viptela-Diagram
+```
 
 1. This requires Python 3.7+ mainly. Install Python added to path. It is preferred to have a virtualenv created for this project separately. After that following libraries are required.
 * Flask, Configparser (optional)
 
 1. To create virtualenv,
 
->``` python3 -m venv venv```(Linux) or ```virtualenv venv``` (Windows)
+```python 
+python3 -m venv venv
+```
+>(Linux) or 
 
-1. You can use 'pip install <library_name>' to install them. Or use requirements.txt as below (after activating the virtualenv)
+```python 
+virtualenv venv
+``` 
+>(Windows)
 
->```pip install -r requirements.txt```
+1. You can use `pip install <library_name>` to install them one by one. Or use requirements.txt as below (after activating the virtualenv)
+
+```python
+pip install -r requirements.txt
+```
 
 1. Download NextUI js and css files from Cisco devnet (https://d1nmyq4gcgsfi5.cloudfront.net/site/neXt/). NextUI is used to build the UI here. 
 
@@ -32,10 +46,12 @@ As described, this can be used to view the IPsec tunnels created between the bra
 
 1. Change ip address of the server (vmanage), username and password in the getconn.py file.(In the places of IP, username, pwd). *I know that this is not good practise. Need to implement a proper method to store credentials in the future. This is only the first development stage/testing
 
->```session=viptelaquery.initalize_connection('ip','user','pwd')```
->```inventory=viptelaquery.get_inventory('ip',session)```
->```session=viptelaquery.initalize_connection('ip','user','pwd')```
->```link_det=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)```
+``` python
+session=viptelaquery.initalize_connection('ip','user','pwd')
+inventory=viptelaquery.get_inventory('ip',session)
+session=viptelaquery.initalize_connection('ip','user','pwd')
+link_det=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
+```
 
 
 ## Configuration
@@ -43,23 +59,41 @@ As described, this can be used to view the IPsec tunnels created between the bra
 1. The only configuration needs to be done currently is changing ip, username, password as mentioned in the installation step.
 *Note: I have put the timeout for a API request as 300s (a big value). This might be required of you are using a VPN connection. Otherwise yuo may bring it down to something like 10s. (default value), as below (in viptelaquery.py)
 
-`response = session.request("GET", url,verify=False,timeout=300)`
+```python
+response = session.request("GET", url,verify=False,timeout=300)
+```
 
 ## Usage
 
 1. To run, get a terminal/CMD and go to the directory where the project folder lies
 
-> ``` cd .../Viptela-Diagram/ ```
+ ```
+ cd .../Viptela-Diagram/
+ ```
 
 1. With virtualenv activated (if one is used only)
 
->```source venv/bin/activate```(inux) or ```venv\bin\activate``` (Windows)
->```Python getconn.py```
+```python
+source venv/bin/activate
+```
+>(Linux) or 
+```python
+venv\bin\activate
+``` 
+>(Windows)
 
+1. Then run the script,
+
+```python
+Python getconn.py
+```
 1. You would see the Flask server intiated.
 1. This has only one web page to display the diagram, view it from a browser,
 
-<```http://localhost:5000```, *port=5000 might be different*.
+```
+http://localhost:5000
+```
+*port=5000 might be different*.
 
 ## Testing
 
