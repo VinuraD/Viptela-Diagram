@@ -1,5 +1,5 @@
 # Viptela-Diagram
-This is a Python-Flask based code to generate a diagram of a Cisco SDWAN network (dataplane only) and display the tunnels between the branches. Currently it displays all the tunnels in the same colour (without labelling or differentiation). One future improvement will be labelling and adding different colours to different tunnels. This is only the first development stage. Hence, debug features are turned on.
+This is a Python-Flask based code to generate a diagram of a Cisco SDWAN network (dataplane only) and display the IPSec tunnels between the branches. Currently it displays all the tunnels in the same colour (without labelling or differentiation). One future improvement will be labelling and adding different colours to different tunnels. This is only the first development stage. Hence, debug features are turned on as well.
 
 <img width="715" alt="sdwan" src="https://user-images.githubusercontent.com/31266374/96609909-a860ef80-1318-11eb-9283-e63aa60ac8a6.PNG">
 
@@ -9,16 +9,29 @@ As described, this can be used to view the IPsec tunnels created between the bra
 
 ## Installation
 
+1. Clone the repository. ( Or download the .zip file directly).
+>``` git clone https://github.com/VinuraD/Viptela-Diagram ```
+
+1. Go to the directory
+>```cd .../Viptela-Diagram```
+
 1. This requires Python 3.7+ mainly. Install Python added to path. It is preferred to have a virtualenv created for this project separately. After that following libraries are required.
 * Flask, Configparser (optional)
-1. You can use 'pip install <library_name>' to install them.
+
+1. To create virtualenv,
+
+>``` python3 -m venv venv```(Linux) or ```virtualenv venv``` (Windows)
+
+1. You can use 'pip install <library_name>' to install them. Or use requirements.txt as below (after activating the virtualenv)
+
+>```pip install -r requirements.txt```
 
 1. Download NextUI js and css files from Cisco devnet (https://d1nmyq4gcgsfi5.cloudfront.net/site/neXt/). NextUI is used to build the UI here. 
-1. Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout
-1. You have to put app.js and data.js files in the 'static' folder and viptelaquery.py and app.py in the same directory. Here, data.js contains only an example dataset. One can edit it to statically include a diagram.
+
+1. Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout) You have to put app.js and data.js files in the 'static' folder and viptelaquery.py and app.py in the same directory. Here, data.js contains only an example dataset. One can edit it to statically include a diagram. Here in the repo, they are in order. But after downloading NextUI files, you will have to put them manually in the 'static' folder.
+
 1. Chnage ip address of the server (vmanage), username and password in the getconn.py file.(In the places of IP, username, pwd). *I know that this is not good practise. Need to implement a proper method to store credentials in the future. This is only the first development stage
-1. Run getconn.py
-1. View from any browser (eg:- http://localhost:5000)
+
 
 ## Configuration
 
@@ -29,10 +42,19 @@ As described, this can be used to view the IPsec tunnels created between the bra
 
 ## Usage
 
-1. To run, get a terminal/CMD and go to the directory where your project folder lies
-1. With virtualenv activated (if one is used only), `Python getconn.py`
+1. To run, get a terminal/CMD and go to the directory where the project folder lies
+
+> ``` cd .../Viptela-Diagram/ ```
+
+1. With virtualenv activated (if one is used only)
+
+>```source venv/bin/activate```(inux) or ```venv\bin\activate``` (Windows)
+>```Python getconn.py```
+
 1. You would see the Flask server intiated.
-1. This has only one web page to display the diagram, view it from a browser (as mentioned in the installation step)
+1. This has only one web page to display the diagram, view it from a browser,
+
+<```http://localhost:5000```, *port=5000 might be different*.
 
 ## Testing
 
