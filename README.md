@@ -15,7 +15,7 @@ As described, this can be used to view the IPsec tunnels created between the bra
 
 1. Download NextUI js and css files from Cisco devnet (https://d1nmyq4gcgsfi5.cloudfront.net/site/neXt/). NextUI is used to build the UI here. 
 1. Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout
-1. You have to put app.js and data.js files in the 'static' folder and viptelaquery.py and app.py in the same directory.
+1. You have to put app.js and data.js files in the 'static' folder and viptelaquery.py and app.py in the same directory. Here, data.js contains only an example dataset. One can edit it to statically include a diagram.
 1. Chnage ip address of the server (vmanage), username and password in the getconn.py file.(In the places of IP, username, pwd). *I know that this is not good practise. Need to implement a proper method to store credentials in the future. This is only the first development stage
 1. Run getconn.py
 1. View from any browser (eg:- http://localhost:5000)
