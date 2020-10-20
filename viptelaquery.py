@@ -79,9 +79,7 @@ def get_tunnel_statistic(serveraddress,session,systemip,inventory):
 
     response = session.request("GET", url,verify=False,timeout=300)
     json_string=response.json()
-    #print (json_string)
-    #for item in json_string['data']:
-    #    print(item)
+    
 
     # If there is an error, with the query then let's print out the error code
     if 'error' in json_string:
