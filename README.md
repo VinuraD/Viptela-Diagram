@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
 * Download NextUI js and css files from Cisco devnet (https://d1nmyq4gcgsfi5.cloudfront.net/site/neXt/). NextUI is used to build the UI here. 
 
-* Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout) You have to put app.js and data.js files in the 'static' folder and viptelaquery.py and app.py in the same directory. Here, data.js contains only an example dataset and the same dataset is present in the getconn.py as well. One can edit it to statically include a diagram. Here in the repo, they are in order. But after downloading NextUI files, you will have to put them manually in the 'static' folder.
+* Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout) You have to put app.js and data.js files in the 'static' folder. Here, data.js contains only an example dataset and the same dataset is present in the getconn.py as well. One can edit it to statically include a diagram. Here in the repo, they are in order. But after downloading NextUI files, you will have to put them manually in the 'static' folder.
 
 * Change ip address of the server (vmanage), username and password in the getconn.py file.(In the places of IP, username, pwd). *I know that this is not good practise. Need to implement a proper method to store credentials in the future. This is only the first development stage/testing. 
 
