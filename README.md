@@ -114,7 +114,7 @@ vinurad@millenniumitesp.com
 
 https://github.com/CiscoSE/viptelaquery, Thanks, I used this as the code to make API requests. (I have made some changes to the original code in this project). 
 
-## LICENCE
+## LICENSE
 
-Please view the LICENCE file
-[LICENCE](https://github.com/VinuraD/Viptela-Diagram/blob/main/LICENSE)
+Please view the LICENSE file
+[LICENSE](https://github.com/VinuraD/Viptela-Diagram/blob/main/LICENSE)
