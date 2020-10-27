@@ -1,7 +1,7 @@
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/VinuraD/Viptela-Diagram)
 
 # Viptela-Diagram
-This is a Python-Flask based code to generate a diagram of a Cisco SDWAN network (dataplane only) and display the IPSec tunnels between the branches. Currently it displays all the tunnels in the same colour (without labelling or differentiation). One future improvement will be labelling and adding different colours to different tunnels. This is only the first development stage. Hence, debug features are turned on as well.
+This is a Python-Flask based code to generate a diagram of a Cisco SDWAN network (dataplane only) and display the IPSec tunnels between the branches. Currently it displays all the tunnels in different colours. This is only the first development stage. Hence, debug features are turned on as well.
 
 <img width="715" alt="sdwan" src="https://user-images.githubusercontent.com/31266374/96609909-a860ef80-1318-11eb-9283-e63aa60ac8a6.PNG">
 
