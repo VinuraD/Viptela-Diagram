@@ -6,6 +6,8 @@ import time
 
 app=Flask(__name__)
 
+colors=['#cd5c5c','#0000ff','#008000','#884513','#ff0ff']
+
 @app.route("/")
 def home():
     session=viptelaquery.initalize_connection('ip','user','pwd')
@@ -38,14 +40,15 @@ def home():
         #print(name)
         if name!='vmanage' and value!='vBond' and value!='vsmart':
             session=viptelaquery.initalize_connection('ip','user','pwd')
-            link_det=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
+            link_det,color_list=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
             #
             print(link_det)
             
-            for t in link_det['target']:
+	    for t in link_det['target']:
                 link={}
                 link['source']=node['id']
                 link['target']=mapper[t.split(' ')[0]]####when there is error in viptelaquery???
+                link['color']=colors[color_list.index(t.split(' ')[1])]
                 if (str(link['source'])+' '+str(link['target'])+' '+t.split(' ')[1] in linkstrack) or (str(link['target'])+' '+str(link['source'])+' '+t.split(' ')[1] in linkstrack):#any(d['source'] == mapper[t.split(' ')[0]] for d in links) and any(d['target'] == node['id'] for d in links):
                     pass
                 else:
@@ -54,32 +57,7 @@ def home():
         else:
             pass
 
-    dat2={
-	"nodes": [
-		{
-			"id": '0',
-			"name": "York"
-		},
-		{
-			"id": '1',
-			"name": "Los Angeles"
-		},
-		{
-			"id": '2',
-			"name": "Houston"
-		}
-	],
-	"links": [
-		{
-			"source": '0',
-			"target": '1'
-		},
-		{
-			"source": '0',
-			"target": '2'
-		}
-	]
-}#this is only a test data
+    
     dat['nodes']=nodes
     dat['links']=links
     print(dat)
