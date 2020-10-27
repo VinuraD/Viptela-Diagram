@@ -114,7 +114,8 @@ vinurad@millenniumitesp.com
 
 ## Credits and references
 
-https://github.com/CiscoSE/viptelaquery, Thanks, I used this as the code to make API requests. (I have made some changes to the original code in this project). 
+https://github.com/CiscoSE/viptelaquery, Thanks, I used this as the code to make API requests. (I have made some changes to the original code in this project).
+https://github.com/pcardotatgit/My_NeXt-UI_Tutorials, A good set of tutorials for NextUI
 
 ## LICENSE
 
