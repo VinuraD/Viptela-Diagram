@@ -13,7 +13,8 @@
 		},
 		// special configuration for links
 		"linkConfig": {
-			"linkType": "curve"
+			"linkType": "curve",
+			"color": "model.color"
 		},
 		// if true, the nodes' icons are shown, otherwise a user sees a dot instead
 		"showIcon": true,
