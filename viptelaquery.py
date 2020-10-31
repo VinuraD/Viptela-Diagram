@@ -79,33 +79,37 @@ def get_tunnel_statistic(serveraddress,session,systemip,inventory):
 
     response = session.request("GET", url,verify=False,timeout=300)
     json_string=response.json()
-    
+    #print (json_string)
+    #for item in json_string['data']:
+    #    print(item)
 
     # If there is an error, with the query then let's print out the error code
     if 'error' in json_string:
         print("An Error Occured processing the data")
         print(json_string['error']['details'])
         targets=[]
+        colors=[]
         links_det['target']=targets
         links_det['source']=systemip
     else:
+       
         # Process through each Tunnel on the device
         
         targets=[]
-        #colors=[]
+        colors=[]
         for stats in json_string['data']:
-            
+            #rx=rx+int(stats['rx_octets'])
+            #tx=tx+int(stats['tx_octets'])
             #print(stats)
             links_det['source']=stats['vdevice-host-name']
             targets.append(stats['system-ip']+' '+stats['local-color'])
-            #colors.append(stats['local-color'])
-            
+            colors.append(stats['local-color'])
+            #links_det['target']=stats['system-ip']#,stats['local-color']
+            #print(inventory[stats['system-ip']])
         
         links_det['target']=targets
+        colors=list(set(colors))
         #links_det['colors']=colors
+        print(colors,'Here')
         
-    return links_det
-
-#print ("Viptela vManage Engine Starting...\n")
-
-
+    return links_det,colors
