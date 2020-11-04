@@ -10,8 +10,8 @@ colors=['#cd5c5c','#0000ff','#008000','#884513','#ff0ff']
 
 @app.route("/")
 def home():
-    session=viptelaquery.initalize_connection('172.25.107.121','admin','cisco')
-    inventory=viptelaquery.get_inventory('172.25.107.121',session)
+    session=viptelaquery.initalize_connection('ip','user','pwd')
+    inventory=viptelaquery.get_inventory('ip',session)
     print(inventory)
     dat={}
     nodes=[]
@@ -41,8 +41,8 @@ def home():
         ip=node['name'].split(' ')[1]
         #print(name)
         if name!='vmanage' and value!='vBond' and value!='vsmart':
-            session=viptelaquery.initalize_connection('172.25.107.121','admin','cisco')
-            link_det,color_list=viptelaquery.get_tunnel_statistic('172.25.107.121',session,ip,inventory)
+            session=viptelaquery.initalize_connection('ip','user','pwd')
+            link_det,color_list=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
             link_colors.extend(color_list)
             print(link_det)
             link_details.append(link_det)
