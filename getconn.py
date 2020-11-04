@@ -10,13 +10,15 @@ colors=['#cd5c5c','#0000ff','#008000','#884513','#ff0ff']
 
 @app.route("/")
 def home():
-    session=viptelaquery.initalize_connection('ip','user','pwd')
-    inventory=viptelaquery.get_inventory('ip',session)
+    session=viptelaquery.initalize_connection('172.25.107.121','admin','cisco')
+    inventory=viptelaquery.get_inventory('172.25.107.121',session)
     print(inventory)
     dat={}
     nodes=[]
     links=[]
     linkstrack=[]
+    link_colors=[]
+    link_details=[]
 
     mapper={}
     index=0
@@ -39,29 +41,73 @@ def home():
         ip=node['name'].split(' ')[1]
         #print(name)
         if name!='vmanage' and value!='vBond' and value!='vsmart':
-            session=viptelaquery.initalize_connection('ip','user','pwd')
-            link_det,color_list=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
-            #
+            session=viptelaquery.initalize_connection('172.25.107.121','admin','cisco')
+            link_det,color_list=viptelaquery.get_tunnel_statistic('172.25.107.121',session,ip,inventory)
+            link_colors.extend(color_list)
             print(link_det)
-            
-	    for t in link_det['target']:
-                link={}
-                link['source']=node['id']
-                link['target']=mapper[t.split(' ')[0]]####when there is error in viptelaquery???
-                link['color']=colors[color_list.index(t.split(' ')[1])]
-                if (str(link['source'])+' '+str(link['target'])+' '+t.split(' ')[1] in linkstrack) or (str(link['target'])+' '+str(link['source'])+' '+t.split(' ')[1] in linkstrack):#any(d['source'] == mapper[t.split(' ')[0]] for d in links) and any(d['target'] == node['id'] for d in links):
-                    pass
-                else:
-                    links.append(link)
-                    linkstrack.append(str(link['source'])+' '+str(link['target'])+' '+t.split(' ')[1])
+            link_details.append(link_det)
+            #print(colorlist)
         else:
             pass
+            
+    color_list=sorted(list(set(link_colors)))    
+    for link_det in link_details:        
+        for t in link_det['target']:
+            link={}
+            nodeid=nodes[link_details.index(link_det)]['id']
+            link['source']=nodeid
+            link['target']=mapper[t.split(' ')[0]]####when there is error in viptelaquery???
+            link['color']=colors[color_list.index(t.split(' ')[1])]
+            print(link['color'])
+            if (str(link['source'])+' '+str(link['target'])+' '+t.split(' ')[1] in linkstrack) or (str(link['target'])+' '+str(link['source'])+' '+t.split(' ')[1] in linkstrack):#any(d['source'] == mapper[t.split(' ')[0]] for d in links) and any(d['target'] == node['id'] for d in links):
+                pass
+            else:
+                links.append(link)
+                linkstrack.append(str(link['source'])+' '+str(link['target'])+' '+t.split(' ')[1])
+        
 
     
     dat['nodes']=nodes
     dat['links']=links
     print(dat)
-    return render_template("index.html",topdat=dat)
+    legend_dat={}
+    for color in color_list:
+        legend_dat[color]=colors[color_list.index(color)]
+
+    return render_template("index.html",topdat=dat, legenddat=legend_dat)
+
+@app.route("/test")
+def test():
+    dat2={
+	"nodes": [
+		{
+			"id": '0',
+			"name": "York"
+		},
+		{
+			"id": '1',
+			"name": "Los Angeles"
+		},
+		{
+			"id": '2',
+			"name": "Houston"
+		}
+	],
+	"links": [
+		{
+			"source": '0',
+			"target": '1',
+            "color":"red"
+		},
+		{
+			"source": '0',
+			"target": '2',
+            "color":"blue"
+		}
+	]
+}
+    return render_template("index.html",topdat=dat2)
+
 
 if __name__=="__main__":
     app.run(debug=True)
