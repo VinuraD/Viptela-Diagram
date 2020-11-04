@@ -9,7 +9,9 @@
 <body>
 	<div id="topology-container"></div>
     <script type="text/javascript">
-        var topologyData = JSON.parse('{{ topdat | tojson | safe}}');
+		var topologyData = JSON.parse('{{ topdat | tojson | safe}}');
+		var legendData = JSON.parse('{{ legenddat | tojson | safe}}');
+		console.log(legendData);
     </script>
 	<script type="text/javascript" src="static/app.js"></script>
 </body>
