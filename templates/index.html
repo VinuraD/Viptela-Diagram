@@ -1,18 +1,21 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>My first NeXt topology!</title>
 	<link rel="stylesheet" href="static/css/next.css">
-	<script type="text/javascript" src="static/js/next.js"></script>
+  <script type="text/javascript" src="static/js/next.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> <!-- bootstrap 4-->
 </head>
-<body>
-	<div id="topology-container"></div>
-    <script type="text/javascript">
-		var topologyData = JSON.parse('{{ topdat | tojson | safe}}');
-		var legendData = JSON.parse('{{ legenddat | tojson | safe}}');
-		console.log(legendData);
-    </script>
-	<script type="text/javascript" src="static/app.js"></script>
+<body >
+	<div id="topology-container"  ></div>
+  <script type="text/javascript">
+  var topologyData = JSON.parse('{{ topdat | tojson | safe}}');
+  var legendData = JSON.parse('{{ legenddat | tojson | safe}}');
+  </script>
+  <script type="text/javascript" src="static/app.js"></script>
+
+  <div id="t1" class="table-hover " style=" position: absolute ; left: 83%; top: 8%;" ></div>   <!-- Container for the legend over topology position can be customize-->
+  <script type="text/javascript" src="static/legend.js"></script> <!-- Calling script file to the index-->
+
 </body>
 </html>
