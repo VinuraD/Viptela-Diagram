@@ -15,12 +15,17 @@
 		"linkConfig": {
 			"linkType": "curve",
 			"color": "model.color"
+
 		},
+		//Canvas size for the topology
+		"width":1700,
+		"height":750,
+
 		// if true, the nodes' icons are shown, otherwise a user sees a dot instead
 		"showIcon": true,
 		// automatically compute the position of nodes
 		"dataProcessor": "force"
-
+		
 	};
 
 	// instantiate Topology class
