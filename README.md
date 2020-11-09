@@ -79,7 +79,7 @@ venv\Scripts\activate
 ```python
 Python getconn.py
 ```
-* You would see the Flask server intiated.
+* You would see the Flask server intiated and you would be asked for ip address of the viptela server(vmanage),username and password
 * This has only one web page to display the diagram, view it from a browser,
 
 ```
