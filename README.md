@@ -1,7 +1,7 @@
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/VinuraD/Viptela-Diagram)
 
 # Viptela-Diagram
-This is a Python-Flask based code to generate a diagram of a Cisco SDWAN network (dataplane only) and display the IPSec tunnels between the branches. Currently it displays all the tunnels in different colours. This is only the first development stage. Hence, debug features are turned on as well.
+This is a Python-Flask based code to generate a diagram of a Cisco SDWAN network (dataplane only) and display the IPSec tunnels between the branches. Currently it displays all the tunnels in different colours. This is only the first development stage. 
 
 ![MicrosoftTeams-image](https://user-images.githubusercontent.com/31266374/98461589-5ef71800-21d3-11eb-924c-578f309d7415.png)
 
@@ -45,16 +45,6 @@ pip install -r requirements.txt
 * Download NextUI js and css files from Cisco devnet (https://d1nmyq4gcgsfi5.cloudfront.net/site/neXt/). NextUI is used to build the UI here. 
 
 * Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout) You have to put app.js and data.js files in the 'static' folder. Here, data.js contains only an example dataset. One can edit it to statically include a diagram. Here in the repo, they are in order. But after downloading NextUI files, you will have to put them manually in the 'static' folder.
-
-* Change ip address of the server (vmanage), username and password in the getconn.py file.(In the places of IP, username, pwd). *I know that this is not good practise. Need to implement a proper method to store credentials in the future. This is only the first development stage/testing. 
-
-``` python
-session=viptelaquery.initalize_connection('ip','user','pwd')
-inventory=viptelaquery.get_inventory('ip',session)
-session=viptelaquery.initalize_connection('ip','user','pwd')
-link_det=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
-```
-
 
 ## Configuration
 
@@ -103,7 +93,7 @@ This was tested with an actual implementation of a Cisco SDWAN network
 
 ## Known Issues
 
-Apart from the lack of credential storing method, if the API calls get delayed too much, the app might throw an unhandled error. But this will be caused due to network latencies such as when connecting through a remote VPN connection to make API requests. Hence, I have put 300s timeout (not recommended, only for testing)
+If the API calls get delayed too much, the app might throw an unhandled error. But this will be caused due to network latencies such as when connecting through a remote VPN connection to make API requests. Hence, I have put 300s timeout (not recommended, only for testing/VPN environment)
 
 ## Getting Involved
 
