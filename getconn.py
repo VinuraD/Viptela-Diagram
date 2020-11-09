@@ -2,16 +2,29 @@ import viptelaquery
 import flask
 from flask import Flask, render_template, url_for, request,redirect,jsonify, flash, session, abort
 import time
+import getpass
 
+
+class Login:
+    def __init__(self,ip,un,pw):
+        self.ip = ip
+        self.name = un
+        self.pw = pw
+#Taking the input from user        
+D= Login(input('IP address: '),input('Username: '),getpass.getpass())
 
 app=Flask(__name__)
 
 colors=['#cd5c5c','#0000ff','#008000','#884513','#ff0ff']
 
+#assigning the credentials from class 'Login'
+ip_address= D.ip
+username= D.name
+password = D.pw
 @app.route("/")
 def home():
-    session=viptelaquery.initalize_connection('ip','user','pwd')
-    inventory=viptelaquery.get_inventory('ip',session)
+    session=viptelaquery.initalize_connection(ip_address,username,password)
+    inventory=viptelaquery.get_inventory(ip_address,session)
     print(inventory)
     dat={}
     nodes=[]
@@ -41,8 +54,8 @@ def home():
         ip=node['name'].split(' ')[1]
         #print(name)
         if name!='vmanage' and value!='vBond' and value!='vsmart':
-            session=viptelaquery.initalize_connection('ip','user','pwd')
-            link_det,color_list=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
+            session=viptelaquery.initalize_connection(ip_address,username,password)
+            link_det,color_list=viptelaquery.get_tunnel_statistic(ip_address,session,ip,inventory)
             link_colors.extend(color_list)
             print(link_det)
             link_details.append(link_det)
@@ -109,5 +122,5 @@ def test():
     return render_template("index.html",topdat=dat2)
 
 
-if __name__=="__main__":
-    app.run(debug=True)
+if __name__=="__main__":    
+    app.run(debug=False)
