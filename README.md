@@ -48,7 +48,6 @@ pip install -r requirements.txt
 
 ## Configuration
 
-* The only configuration needs to be done currently is changing ip, username, password as mentioned in the installation step.
 *Note: I have put the timeout for a API request as 300s (a big value). This might be required of you are using a VPN connection. Otherwise you may bring it down to something like 10s. (default value), as below (in viptelaquery.py)
 
 ```python
