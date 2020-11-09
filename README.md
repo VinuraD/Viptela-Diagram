@@ -1,9 +1,9 @@
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/VinuraD/Viptela-Diagram)
 
 # Viptela-Diagram
-This is a Python-Flask based code to generate a diagram of a Cisco SDWAN network (dataplane only) and display the IPSec tunnels between the branches. Currently it displays all the tunnels in different colours. This is only the first development stage. Hence, debug features are turned on as well.
+This is a Python-Flask based code to generate a diagram of a Cisco SDWAN network (dataplane only) and display the IPSec tunnels between the branches. Currently it displays all the tunnels in different colours. This is only the first development stage. 
 
-<![image](https://user-images.githubusercontent.com/31266374/97273812-cf0fb080-1859-11eb-85fb-7c892b4a1bfd.png)>
+![MicrosoftTeams-image](https://user-images.githubusercontent.com/31266374/98461589-5ef71800-21d3-11eb-924c-578f309d7415.png)
 
 
 ## Use case
@@ -46,19 +46,8 @@ pip install -r requirements.txt
 
 * Use normal folder hierarchy used in a flask project, as explained here (https://flask.palletsprojects.com/en/1.1.x/tutorial/layout) You have to put app.js and data.js files in the 'static' folder. Here, data.js contains only an example dataset. One can edit it to statically include a diagram. Here in the repo, they are in order. But after downloading NextUI files, you will have to put them manually in the 'static' folder.
 
-* Change ip address of the server (vmanage), username and password in the getconn.py file.(In the places of IP, username, pwd). *I know that this is not good practise. Need to implement a proper method to store credentials in the future. This is only the first development stage/testing. 
-
-``` python
-session=viptelaquery.initalize_connection('ip','user','pwd')
-inventory=viptelaquery.get_inventory('ip',session)
-session=viptelaquery.initalize_connection('ip','user','pwd')
-link_det=viptelaquery.get_tunnel_statistic('ip',session,ip,inventory)
-```
-
-
 ## Configuration
 
-* The only configuration needs to be done currently is changing ip, username, password as mentioned in the installation step.
 *Note: I have put the timeout for a API request as 300s (a big value). This might be required of you are using a VPN connection. Otherwise you may bring it down to something like 10s. (default value), as below (in viptelaquery.py)
 
 ```python
@@ -89,7 +78,7 @@ venv\Scripts\activate
 ```python
 Python getconn.py
 ```
-* You would see the Flask server intiated.
+* You would see the Flask server intiated and you would be asked for ip address of the viptela server(vmanage),username and password
 * This has only one web page to display the diagram, view it from a browser,
 
 ```
@@ -103,7 +92,7 @@ This was tested with an actual implementation of a Cisco SDWAN network
 
 ## Known Issues
 
-Apart from the lack of credential storing method, if the API calls get delayed too much, the app might throw an unhandled error. But this will be caused due to network latencies such as when connecting through a remote VPN connection to make API requests. Hence, I have put 300s timeout (not recommended, only for testing)
+If the API calls get delayed too much, the app might throw an unhandled error. But this will be caused due to network latencies such as when connecting through a remote VPN connection to make API requests. Hence, I have put 300s timeout (not recommended, only for testing/VPN environment)
 
 ## Getting Involved
 
