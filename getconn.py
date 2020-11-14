@@ -1,4 +1,5 @@
 import viptelaquery
+from viptelaquery import Loop1,Loop2
 import flask
 from flask import Flask, render_template, url_for, request,redirect,jsonify, flash, session, abort
 import time
@@ -18,13 +19,22 @@ app=Flask(__name__)
 colors=['#cd5c5c','#0000ff','#008000','#884513','#ff0ff']
 
 #assigning the credentials from class 'Login'
-ip_address= D.ip
-username= D.name
-password = D.pw
 @app.route("/")
 def home():
-    session=viptelaquery.initalize_connection(ip_address,username,password)
-    inventory=viptelaquery.get_inventory(ip_address,session)
+    while Loop2.X:
+        while Loop1.X:
+            ip_address= D.ip
+            username= D.name
+            password = D.pw
+            if(viptelaquery.initalize_connection(ip_address,username,password)==False):
+                 D.ip= input('IP address: ')
+            else:
+                session=viptelaquery.initalize_connection(ip_address,username,password)
+        if(viptelaquery.get_inventory(ip_address,session)==False):
+            D.name = input('Username: ')
+            D.pw = getpass.getpass()
+        else:
+            inventory=viptelaquery.get_inventory(ip_address,session)
     print(inventory)
     dat={}
     nodes=[]
