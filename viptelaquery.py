@@ -4,13 +4,12 @@ import configparser
 
 class True_False:
   def __init__(self):
-    self.status = True
+    self.X = True
 Loop1 = True_False()
 Loop2 = True_False()
 
-
 def initalize_connection(ipaddress,username,password):
-
+    
     """
     This function will initialize a connection to the Viptela vManage platform.
 
@@ -39,7 +38,7 @@ def initalize_connection(ipaddress,username,password):
         print ("Unable to Connect to "+ipaddress)       
         return False
 
-    Loop1.status = False
+    Loop1.X = False
     return sess
 
 def get_inventory(serveraddress,session):
@@ -53,9 +52,8 @@ def get_inventory(serveraddress,session):
     print("Retrieving the inventory data from the vManage at "+serveraddress+"\n")
 
     url = "https://" + serveraddress + "/dataservice/device"
-    response = session.request("GET", url, verify=False,timeout=300)
+    response = session.request("GET", url, verify=False, timeout=300)
 
-    #Handling exceptions
     try:
         json_string = response.json()
     except ValueError:
@@ -65,6 +63,7 @@ def get_inventory(serveraddress,session):
 
     Loop2.X= False
     Loop1.X= False
+
     #print(json_string)
     #for item in json_string['data']:
     #   print(item)
