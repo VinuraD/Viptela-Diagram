@@ -11,11 +11,26 @@
   <script type="text/javascript">
   var topologyData = JSON.parse('{{ topdat | tojson | safe}}');
   var legendData = JSON.parse('{{ legenddat | tojson | safe}}');
+  var statisticsData = JSON.parse('{{ statistic | tojson | safe}}');
   </script>
   <script type="text/javascript" src="static/app.js"></script>
 
   <div id="t1" class="table-hover " style=" position: absolute ; left: 83%; top: 8%;" ></div>   <!-- Container for the legend over topology position can be customize-->
   <script type="text/javascript" src="static/legend.js"></script> <!-- Calling script file to the index-->
+
+  <div id="statisticTable" class="table-bordered table-hover table-striped" style="width:max-content ; position: absolute; bottom: 5%; left: 63%;">
+    <table id= 'StatTable'>
+      <tbody id= 'statTableBody'>
+        <tr>
+          <th style="width:27%;">Service Provider  </th>
+          <th style="width:24%;">Avg. Jitter(ms)  </th>
+          <th style="width:24%;">Avg. Loss(%)  </th>
+          <th style="width:24%;">Avg. Latency(ms)  </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script type="text/javascript" src="static/statistics.js"></script> <!-- Calling script file to the index-->
 
 </body>
 </html>

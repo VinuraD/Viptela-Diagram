@@ -3,6 +3,7 @@ import flask
 from flask import Flask, render_template, url_for, request,redirect,jsonify, flash, session, abort
 import time
 from viptelaquery import Loop1,Loop2
+import getData
 
 import getpass
 class Login:
@@ -10,9 +11,9 @@ class Login:
         self.ip = ip
         self.name = un
         self.pw = pw
-D= Login(input('IP address: '),input('Username: '),getpass.getpass())
+D= Login(input('IP address: '),input('Username: '),getpass.getpass())  #taking the input from user
 
-while Loop2.X:
+while Loop2.X:          #error handling in login
         while Loop1.X:
             ip_address= D.ip
             username= D.name
@@ -34,7 +35,7 @@ colors=['#cd5c5c','#0000ff','#008000','#884513','#ff0ff']
 
 @app.route("/")
 def home():    
-    print(inventory)
+    #print(inventory)
     dat={}
     nodes=[]
     links=[]
@@ -42,6 +43,8 @@ def home():
     link_colors=[]
     link_details=[]
 
+    
+    
     mapper={}
     index=0
     for key,value in inventory.items():
@@ -57,13 +60,14 @@ def home():
             pass
     
     #print(nodes)
+    session=viptelaquery.initalize_connection(ip_address,username,password)
+    statistics = getData.get_statistics(ip_address,session)   #Taking the average values of jitter,loss, latency
     
     for node in nodes:
         name=node['name'].split(' ')[0]
         ip=node['name'].split(' ')[1]
         #print(name)
         if name!='vmanage' and value!='vBond' and value!='vsmart':
-            session=viptelaquery.initalize_connection(ip_address,username,password)
             link_det,color_list=viptelaquery.get_tunnel_statistic(ip_address,session,ip,inventory)
             link_colors.extend(color_list)
             print(link_det)
@@ -96,7 +100,7 @@ def home():
     for color in color_list:
         legend_dat[color]=colors[color_list.index(color)]
 
-    return render_template("index.html",topdat=dat, legenddat=legend_dat)
+    return render_template("index.html",topdat=dat, legenddat=legend_dat, statistic=statistics)
 
 @app.route("/test")
 def test():
@@ -132,4 +136,4 @@ def test():
 
 
 if __name__=="__main__":    
-    app.run(debug=False)
+    app.run(debug=True)

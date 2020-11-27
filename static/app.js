@@ -18,8 +18,8 @@
 
 		},
 		//Canvas size for the topology
-		"width":1700,
-		"height":750,
+		"width":1300,
+		"height":700,
 
 		// if true, the nodes' icons are shown, otherwise a user sees a dot instead
 		"showIcon": true,
