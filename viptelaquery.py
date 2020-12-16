@@ -2,10 +2,14 @@ import requests
 import urllib3
 import configparser
 
-
+class True_False:
+  def __init__(self):
+    self.X = True
+Loop1 = True_False()
+Loop2 = True_False()
 
 def initalize_connection(ipaddress,username,password):
-
+    
     """
     This function will initialize a connection to the Viptela vManage platform.
 
@@ -31,9 +35,10 @@ def initalize_connection(ipaddress,username,password):
     try:
         response = sess.request("POST", url, data=payload, headers=headers,verify=False,timeout=10)
     except requests.exceptions.ConnectionError:
-        print ("Unable to Connect to "+ipaddress)
+        print ("Unable to Connect to "+ipaddress)       
         return False
 
+    Loop1.X = False
     return sess
 
 def get_inventory(serveraddress,session):
@@ -47,8 +52,18 @@ def get_inventory(serveraddress,session):
     print("Retrieving the inventory data from the vManage at "+serveraddress+"\n")
 
     url = "https://" + serveraddress + "/dataservice/device"
-    response = session.request("GET", url, verify=False,timeout=300)
-    json_string = response.json()
+    response = session.request("GET", url, verify=False, timeout=300)
+
+    try:
+        json_string = response.json()
+    except ValueError:
+        print ("Incorrect username/password. Re-enter.. ")
+        Loop1.X= True
+        return False
+
+    Loop2.X= False
+    Loop1.X= False
+
     #print(json_string)
     #for item in json_string['data']:
     #   print(item)
